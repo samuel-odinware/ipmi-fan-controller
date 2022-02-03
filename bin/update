@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import importlib
+import tempfile
+import shutil
+import subprocess
+import sys
+
+CWD = os.getcwd()
+TMP = tempfile.gettempdir()
+CONFIG = {
+    "full_name": "Samuel Moore",
+    "email": "samuel@odinware.com",
+    "gitlab_username": "samuel-odinware",
+    "gitlab_repo": "ipmi-fan-controller",
+    "default_branch": "main",
+    "project_name": "ipmi-fan-controller",
+    "project_url": "https://gitlab.com/samuel-odinware/ipmi-fan-controller",
+    "project_short_description": "Service using ipmitools to set fan speed",
+    "package_name": "src",
+    "python_major_version": "3",
+    "python_minor_version": "9",
+    "copyright_holder":"Samuel Moore",
+    "version": "0.1.0",
+    "create_author_file": "y",
+    "open_source_license": "MIT license"
+}
+
+def install(package='cookiecutter'):
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        print("Installing cookiecutter")
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+
+
+def run():
+    print("Generating project")
+
+    from cookiecutter.main import cookiecutter
+
+    os.chdir(TMP)
+    cookiecutter(
+        'https://gitlab.com/Spatcholla/py-project-template.git',
+        no_input=True,
+        overwrite_if_exists=True,
+        extra_context=CONFIG,
+    )
+
+
+def copy():
+    for filename in [
+        '.coveragerc',
+        '.gitattributes',
+        '.gitignore',
+        '.gitlab-ci.yml'
+        '.isort.cfg',
+        '.mypy.ini',
+        '.pydocstyle.ini',
+        '.pylint.ini',
+        '.scrutinizer.yml',
+        'CONTRIBUTING.md',
+        'Makefile',
+        os.path.join('bin', 'checksum'),
+        os.path.join('bin', 'open'),
+        os.path.join('bin', 'update'),
+        'pytest.ini',
+    ]:
+        src = os.path.join(TMP, CONFIG['project_name'], filename)
+        dst = os.path.join(CWD, filename)
+        print("Updating " + filename)
+        shutil.copy(src, dst)
+
+
+if __name__ == '__main__':
+    install()
+    run()
+    copy()

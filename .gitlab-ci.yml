@@ -1,0 +1,33 @@
+image: python:3.9
+
+stages:
+  - lint
+  - test
+  - types
+  - deploy
+
+before_script:
+  - pip install poetry
+  - poetry config virtualenvs.create false
+  - make install
+
+Python Code Lint:
+  stage: lint
+  script:
+    - make check
+
+Unit Tests:
+  stage: test
+  script:
+    - make test
+
+Pages:
+  stage: deploy
+  script:
+    - make mkdocs
+    - mv site/ ../public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

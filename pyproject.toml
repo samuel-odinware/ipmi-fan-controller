@@ -1,0 +1,75 @@
+[tool.poetry]
+
+name = "ipmi-fan-controller"
+version = "0.1.0"
+description = "Service using ipmitools to set fan speed"
+
+license = "MIT"
+
+authors = ["Samuel Moore <samuel@odinware.com>"]
+
+readme = "README.md"
+
+# homepage = "https://pypi.org/project/src"
+documentation = "https://samuel-odinware.gitlab.io/ipmi-fan-controller"
+repository = "https://gitlab.com/samuel-odinware/ipmi-fan-controller"
+
+keywords = [
+]
+classifiers = [
+    # TODO: update this list to match your application: https://pypi.org/pypi?%3Aaction=list_classifiers
+    "Development Status :: 1 - Planning",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+# TODO: Remove these and add your library's requirements
+minilog = "^2.0.1"
+pydantic = {extras = ["dotenv"], version = "^1.8.2"}
+typer = "^0.3.2"
+
+[tool.poetry.dev-dependencies]
+
+# Formatters
+black = "^21.4b0"
+isort = "^5.8.0"
+
+# Linters
+mypy = "^0.812"
+pydocstyle = "^6.1.1" 
+pylint = "^2.8.2"
+pylint-pydantic = "^0.1.3"
+
+# Documentation
+auto-changelog = "^0.5.3"
+Pygments = "^2.9.0"
+mkdocs = "^1.1.2"
+mkdocs-autorefs = "^0.2.1"
+mkdocs-material = "^7.1.3"
+mkdocs-material-extensions = "^1.0.1"
+mkdocstrings = "^0.15.0"
+
+# Testing
+hypothesis = "^6.10.1"
+pytest = "^6.2.3"
+pytest-cov = "^2.11.1"
+pytest-describe = {git = "https://github.com/pytest-dev/pytest-describe", rev = "d65c89dc7ad7637793df06afd3992601e3647823"}# use 2.0 when released
+pytest-expecter = "^2.2"
+pytest-random = "^0.02"
+
+# Reports
+coveragespace = "^4.0"
+
+# Tooling
+ipython = "^7.25.0"
+ipykernel = "^5.5.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

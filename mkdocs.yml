@@ -1,0 +1,33 @@
+site_name: ipmi-fan-controller
+site_description: Service using ipmitools to set fan speed
+site_author: Samuel Moore
+
+site_url: https://samuel-odinware.gitlab.io/ipmi-fan-controller
+repo_url: https://gitlab.com/samuel-odinware/ipmi-fan-controller
+edit_uri: https://gitlab.com/samuel-odinware/ipmi-fan-controller/edit/main/docs
+
+theme:
+  name: material
+
+markdown_extensions:
+  - codehilite
+
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        rendering:
+          show_signature_annotations: true
+          show_root_heading: true
+          show_source: true
+        selection:
+          docstring_style: google
+
+nav:
+  - Home: index.md
+  - About:
+    - Release Notes: about/changelog.md
+    - Contributing: about/contributing.md
+    - License: about/license.md

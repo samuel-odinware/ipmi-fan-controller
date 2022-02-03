@@ -1,0 +1,16 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+    "python.linting.pylintArgs": [
+        "--load-plugins pylint_pydantic",
+        "--max-line-length=88",
+    ],
+    "python.analysis.extraPaths": [
+        "src",
+        "tests"
+    ],
+    "jupyter.jupyterServerType": "local",
+    "python.pythonPath": ".venv/bin/python",
+}
